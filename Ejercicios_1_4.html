@@ -142,6 +142,44 @@ const eliminaPatron=(cadena="", patron="")=>
 eliminaPatron("123h1 123h2 123h3", "h")
 eliminaPatron("", "123ee")
 
+
+/*
+9) Programa una función que obtenga un numero aleatorio entre 501 y 600.
+*/
+const numeroAleatorio =()=> (Math.floor((Math.random()*(600-501))+501));
+console.log(numeroAleatorio());
+
+/*
+
+10) Programa una función que reciba un número y evalúe si es capicúa o no (que se lee igual en un sentido que en otro), pe. miFuncion(2002) devolverá true.
+
+*/
+const capicua=(numero=undefined)=>
+{
+if(numero===undefined) return console.warn("Debes ingresar un número");
+let nvoNumero = numero.toString();
+(nvoNumero===nvoNumero.toString().split("").reverse().join(""))
+?console.log("True")
+:console.log("False");
+}
+
+capicua(121);
+
+/*
+11) Programa una función que calcule el factorial de un número (El factorial de un entero positivo n, se define como el producto de todos los números enteros positivos desde 1 hasta n), pe. miFuncion(5) devolverá 120.*/
+
+const factorial=(numero=undefined)=>{
+    if (numero===undefined) return console.warn("Debes ingresar un numero positivo");
+    if (numero<=0) return console.warn("Debes ingresar un numero positivo");
+    let acumulador=numero;
+    for(let i=1; i<numero; i++){
+        acumulador=acumulador*i
+    }
+    console.info(acumulador);
+
+}
+
+factorial(5);
 </script>    
 
 </body>
