@@ -11,39 +11,138 @@
 
 //1) Programa una función que cuente el número de caracteres de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá 10.
 
-function ingresarCadena(cadena){
+/*function ingresarCadena(cadena = ""){
     let contarCadena = cadena.length;
     console.log(contarCadena);
-}
+}*/
 
-ingresarCadena("JavaScript desde nada");
+const ingresarCadena = (cadena = "") =>
+(!cadena)
+?console.warn("No ingresaste cadena")
+:console.info(`La cadena "${cadena}" tiene "${cadena.length}" caracteres`)
+ingresarCadena("JavaScript desde 0");
+
 
 //2) Programa una función que te devuelva el texto recortado según el número de caracteres indicados, pe. miFuncion("Hola Mundo", 4) devolverá "Hola".
-function cortarCadena(cadena,f){
+/*function cortarCadena(cadena,f){
     let cadenaCortada = cadena.substring(0,f)
     console.log(cadenaCortada)
-}
+}*/
 
-cortarCadena("Retomando Javascript",5);
+const cortarCadena = (cadena ="", f = undefined) =>
+(!cadena)
+?console.warn(`No ingresaste la cadena de texto`)
+:( f === undefined)
+    ?console.warn(`No ingreso la longitud de corte de texto`)
+    :console.info(cadena.slice(0,f));
+
+    cortarCadena(`Hola Moyobamba`,8)
 
 //3) Programa una función que dada una String te devuelva un Array de textos separados por cierto caracter, pe. miFuncion('hola que tal', ' ') devolverá ['hola', 'que', 'tal'].
 
-function separarCadena(cadena){
+/*function separarCadena(cadena){
     let cadenaSeparada=cadena.split(' ');
     console.log(cadenaSeparada);
-}
+}*/
 
-separarCadena("Reaprendiendo JavaScript");
+const separarCadena = (cadena ="", separador = undefined) =>
+(!cadena)
+?console.warn('No ingresaste Cadena a separar')
+:(separador===undefined)
+    ?console.warn("No ingresaste el caracter separador")
+    :console.info(cadena.split(separador))
+
+separarCadena("Lorem ipsos"," ");
 
 //4) Programa una función que repita un texto X veces, pe. miFuncion('Hola Mundo', 3) devolverá Hola Mundo Hola Mundo Hola Mundo.
 
-function repetirTexto(cadena,contador){
+/*function repetirTexto(cadena,contador){
     let cadenaRepetida = cadena.repeat(contador);
     console.log(cadenaRepetida);
 
+}*/
+
+const repetirTexto = (cadena = "" , contador=undefined)=>{
+if(!cadena) return console.warn("No ingresaste texto a repetir");
+if(contador===undefined) return console.warn("No ingresaste numero de repeticiones");
+if(contador===0) return console.error("El numero de veces no puede ser 0");
+if(contador<0) return console.error("El numero de veces no puede ser negativo");
+//console.info(cadena.repeat(contador))
+for(let i=1; i<= contador; i++) console.info(`${cadena}, ${i}`);
 }
 
-repetirTexto("JavaScript ",10);
+repetirTexto("Nando",2);
+
+/*5) Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".
+*/
+
+const invertirCadena=(cadena="") => 
+(!cadena)
+?console.warn('No ingresaste cadena a invertir')
+:console.info(cadena.split("").reverse().join(""));
+
+invertirCadena("Nando Noriega")
+/*
+6) Programa una función para contar el número de veces que se repite una palabra en un texto largo, pe. miFuncion("hola mundo adios mundo", "mundo") devolverá 2.
+*/
+/*function buscarTexto(cadena="", texto=""){
+    let arrayNuevo = cadena.split(' ');
+    let contador=0;
+    for(i=0; i <= arrayNuevo.length; i++){
+        if(arrayNuevo[i] === texto ){
+            contador ++
+        }
+    }
+    console.log(arrayNuevo);
+    console.info(contador);
+
+}*/
+
+const buscarTexto=(cadena="",texto="")=>{
+if(!cadena) return console.warn('No ingresaste cadena de texto largo');
+if(!texto) return console.warn('No ingresaste texto para buscar')
+let arrayNuevo = cadena.split(' ');
+let contador=0;
+for(i=0; i <= arrayNuevo.length; i++){
+        if(arrayNuevo[i] === texto) contador ++
+    }
+    let nroVeces;
+    (contador===1) ? nroVeces='vez' :   nroVeces='veces'
+    console.info(`El texto "${texto}" se repite ${contador} ${nroVeces}`);
+
+}
+buscarTexto("","ww")
+buscarTexto("ww ww ww","")
+buscarTexto("Nando Weninger Noriega Weninger","Weninger")
+buscarTexto("ss ww ww","ww")
+
+/*
+7) Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), pe. mifuncion("Salas") devolverá true.
+*/
+
+const palindromo=(cadena="")=>
+(!cadena)
+?console.warn("No ingresaste cadena a evaluar")
+:cadena.toLowerCase===(cadena.split("").reverse().join("").toLowerCase)
+    ?console.warn(`El texto "${cadena}" en un Palíndromo`)
+    :console.warn("No hay concidencias");
+
+palindromo("radar")
+
+/*
+8) Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
+*/
+const eliminaPatron=(cadena="", patron="")=>
+(!cadena)
+?console.warn("No ingresaste cadena de texto")
+:(!patron)
+    ?console.warn("No ingresaste patron ")
+    :console.info(cadena.replace(new RegExp(patron, "ig"),""));
+
+eliminaPatron("123h1 123h2 123h3", "h")
+eliminaPatron("", "123")
+
 </script>    
+
 </body>
 </html>
