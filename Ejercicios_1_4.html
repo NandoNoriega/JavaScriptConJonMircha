@@ -159,18 +159,19 @@ const capicua=(numero=undefined)=>
 if(numero===undefined) return console.warn("Debes ingresar un número");
 let nvoNumero = numero.toString();
 (nvoNumero===nvoNumero.toString().split("").reverse().join(""))
-?console.log("True")
-:console.log("False");
+?console.log("Capicua")
+:console.log("No es capicua");
 }
 
-capicua(121);
+capicua(121.121);
 
 /*
 11) Programa una función que calcule el factorial de un número (El factorial de un entero positivo n, se define como el producto de todos los números enteros positivos desde 1 hasta n), pe. miFuncion(5) devolverá 120.*/
 
 const factorial=(numero=undefined)=>{
     if (numero===undefined) return console.warn("Debes ingresar un numero positivo");
-    if (numero<=0) return console.warn("Debes ingresar un numero positivo");
+    if(typeof numero!=="number") return console.error(`El valor "${numero}" ingresado, no es un número`)
+    if (numero<=0) return console.warn("Debes ingresar un numero positivo mayor a '0'");
     let acumulador=numero;
     for(let i=1; i<numero; i++){
         acumulador=acumulador*i
@@ -179,7 +180,122 @@ const factorial=(numero=undefined)=>{
 
 }
 
-factorial(5);
+factorial(0);
+
+
+/*
+12) Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true.
+*/
+/**
+ * Determinar si número es primo en JavaScript
+ * 
+ * https://parzibyte.me/blog
+ */
+ const esPrimo = numero => {
+	// Casos especiales
+	if (numero === 0 || numero === 1 || numero === 4) return false;
+	for (let i = 2; i < numero / 2; i++) {
+		if (numero % i === 0) return false;
+	}
+	// Si no se pudo dividir por ninguno de los de arriba, sí es primo
+	return true;
+}
+
+//const numerosParaProbar = [1, 2, 50, 51, 3, 500, 7, 1311,4];
+const numerosParaProbar = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+numerosParaProbar.forEach(numero => {
+	console.log(`¿%d es primo? %s`, numero, esPrimo(numero));
+});
+
+
+const numeroPrimo=(numero)=>{
+    if (numero === 0 || numero === 1) return console.log("No es primo");
+    for(let i=2; i < numero; i++){
+        if(numero % i === 0) return console.log("No es primo")
+    }
+
+    //return console.log((numero !== 1));
+    return console.log(true);
+}
+
+
+numeroPrimo(4)
+/*
+13) Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar.
+*/
+
+const numeroPar=(numero)=>{
+    (numero % 2===0) ? console.log(`${numero} es par`) : console.log(`${numero} es impar`)
+
+}
+
+numeroPar(1003)
+/*
+14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F.
+(20 °C × 9/5) + 32 = 68 °F
+(32 °F − 32) × 5/9 = 0 °C
+
+*/
+const convertirGrados=(numero,tipo)=>{
+    if(tipo==="C"){
+    let celcius = (numero * 9/5) + 32
+    console.log(celcius,"F")
+    }
+    else if(tipo==="F"){
+    let fahrenheit=(numero - 32) * 5/9
+    console.log(fahrenheit,"C")
+    }
+}
+
+convertirGrados(45,"F")
+/*
+15) Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10.
+*/
+const convertirNumeros=(numero,tipo)=>{
+if (tipo===10){
+    console.log(numero.toString(2))
+}
+
+if(tipo===2){
+
+    console.log(parseInt(numero,2))
+}
+
+}
+
+convertirNumeros(20,10)
+
+
+/*
+16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800.
+*/
+const montoFinal=(monto,descuento)=>{
+    console.log(monto-(monto*descuento/100))
+}
+montoFinal(100,20)
+/*
+17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
+*/
+
+const obteneranios=(fecha)=>{
+    let hoy = new Date()
+
+    let diferencia = (hoy.getTime() - fecha.getTime()) / 1000
+
+    diferencia /=(60 * 60 * 24)
+    diferencia /=365.25
+    diferencia=Math.abs(Math.round(diferencia))
+    console.log(diferencia) ;
+    
+    
+
+}
+
+obteneranios(new Date(1983,1,9))
+
+
+
 </script>    
 
 </body>
